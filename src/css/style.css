@@ -185,3 +185,11 @@ li {
 h1 {
   text-align: center;
 }
+
+.author {
+  font-size: 22px;
+  font-weight: bold;
+  background: #8e24aa;
+  color: #fff;
+  width: 270px;
+}
