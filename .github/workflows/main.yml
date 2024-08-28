@@ -22,7 +22,7 @@ jobs:
         uses: azure/arm-deploy@v1
         with:
           subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
-          resourceGroupName: ${{ secrets.AZURE_RG }}
+          resourceGroupName: ${{ vars.AZURE_RG }}
           template: ${{ github.workspace }}/config/main.bicep
-          parameters: 'namePrefix=${{ secrets.AZURE_PREFIX }}'
+          parameters: 'namePrefix=${{ vars.AZURE_PREFIX }}'
           failOnStdErr: false
