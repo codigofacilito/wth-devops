@@ -32,4 +32,4 @@ En este desafio aprenderás cómo:
 ## Prerrequisitos
 
 - Una cuenta de GitHub.
-- Una suscripción de Azure.
+- Una suscripción de Azure
