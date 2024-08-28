@@ -1,28 +1,23 @@
 name: main
-
-on:
-  push:
-    branches:
-      - feature/agregar-hours
-  workflow_dispatch:
-
+on: [workflow_dispatch]
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-        with:
-          ref: feature/agregar-hours
-      - name: Login to Azure
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-      - name: Create resources
-        uses: azure/arm-deploy@v1
-        with:
-          subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
-          resourceGroupName: ${{ vars.AZURE_RG }}
-          template: ${{ github.workspace }}/config/main.bicep
-          parameters: 'namePrefix=${{ vars.AZURE_PREFIX }}'
-          failOnStdErr: false
+
+    - name: Checkout code
+      uses: actions/checkout@main
+
+    - name: Log into Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Deploy Bicep file
+      uses: azure/arm-deploy@v1
+      with:
+        subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
+        resourceGroupName: ${{ vars.AZURE_RG }}
+        template: ${{ github.workspace }}/config/main.bicep
+        parameters: 'namePrefix=${{ vars.AZURE_PREFIX }}'
+        failOnStdErr: false
