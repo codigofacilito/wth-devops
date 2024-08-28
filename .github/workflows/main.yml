@@ -26,3 +26,4 @@ jobs:
           template: ${{ github.workspace }}/config/main.bicep
           parameters: 'namePrefix=${{ vars.AZURE_PREFIX }}'
           failOnStdErr: false
+          
