@@ -1,14 +1,24 @@
 name: main
-on: [workflow_dispatch]
+
+on:
+  push:
+    branches:
+      - feature/agregar-hours
+  workflow_dispatch:
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@main
-      - uses: azure/login@v1
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          ref: feature/agregar-hours
+      - name: Login to Azure
+        uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-      - name: create resources
+      - name: Create resources
         uses: azure/arm-deploy@v1
         with:
           subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
